@@ -1,0 +1,8 @@
+{
+  "name": "next-nest-starter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/KhunKomkrit/next-nest-starter.git",
+  "author": "BankFullStack <komkrit.nookhampan@gmail.com>",
+  "license": "MIT"
+}
