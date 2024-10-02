@@ -3,9 +3,12 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev",
+    "dev": "turbo dev --parallel",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "start:api": "cd apps/api && npm run start",
+    "start:web": "cd apps/web && npm run start",
+    "start": "npm run start:api & npm run start:web"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
