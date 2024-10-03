@@ -39,5 +39,12 @@ To get started, follow these steps:
     npm run dev
     ```
     ![Web Running](./readme_assets/Screenshot%202567-10-03%20at%2020.46.28.png)
-    
+
     ![Api Running](./readme_assets/Screenshot%202567-10-03%20at%2020.46.35.png)
+
+## Frameworks Used 🛠️
+- [Next.js](https://nextjs.org) - A React framework for production.
+- [NestJS](https://nestjs.com) - A progressive Node.js framework for building efficient, reliable and scalable server-side applications.
+- [Turborepo](https://turbo.build/) - Turbo is an incremental bundler and build system optimized for JavaScript and TypeScript, written in Rust.
+- [Prisma](https://www.prisma.io/) Prisma provides the best experience for your team to work and interact with databases.
+
