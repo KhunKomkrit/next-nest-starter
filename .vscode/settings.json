@@ -3,6 +3,7 @@
         "antd",
         "nestjs",
         "nextjs",
-        "switchs"
+        "switchs",
+        "webp"
     ]
 }
