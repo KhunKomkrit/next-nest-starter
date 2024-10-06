@@ -22,7 +22,9 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const toggleTheme = (checked = true) => {  
-    setIsDarkMode(() => checked ? 'dark' : 'light');
+    const newTheme = checked ? 'dark' : 'light';
+    setIsDarkMode(newTheme);
+    localStorage.setItem('theme',newTheme);
   };
 
   return (

@@ -1,32 +1,38 @@
 "use client";
-import { Button, Card, Col, Form, Input, Row, Space } from 'antd';
+import { Button, Card, Col, Form, Input, Row, Space, Divider } from 'antd';
 import "./styles/custom.css"
-import SwitchModeDark from '../components/switchs/switchModeDark';
+import SwitchModeDark from '@/components/switchs/switchModeDark';
+import { signIn } from "next-auth/react"
 export default function Page() {
-  const onFinish = (values: Record<string, any>) => {
+  const onFinish = async (values: Record<string, any>) => {
+    await signIn('credentials', {
+      redirect: false,
+      Username: values.username,
+      Password: values.password
+    })
     console.log('Received values from form: ', values);
   };
 
   return (
     <Row
-      justify="center" 
-      align="middle"   
-      style={{ minHeight: '90vh' }} 
+      justify="center"
+      align="middle"
+      style={{ minHeight: '90vh' }}
     >
       <Col
         span={24}
-        xs={24} 
-        sm={12} 
-        md={8}  
+        xs={24}
+        sm={12}
+        md={8}
         lg={6}
       >
         <Space direction="vertical" style={{ width: '100%' }} >
-          <Card title="Sign In" bordered extra={<SwitchModeDark/>}>
+          <Card title="Sign In" bordered extra={<SwitchModeDark />}>
             <Form
               name="login"
               initialValues={{ remember: true }}
               onFinish={onFinish}
-              
+
             >
               <Form.Item
                 name="username"
@@ -46,6 +52,10 @@ export default function Page() {
                 </Button>
               </Form.Item>
             </Form>
+            <Divider>or</Divider>
+            <Space direction="vertical" style={{ width: '100%' }}>
+              <Button block onClick={() => signIn('google')}>Sign In With Google</Button>
+            </Space>
           </Card>
         </Space>
       </Col>
