@@ -5,16 +5,18 @@ import "./styles/custom.css"
 import SwitchModeDark from '@/components/switchs/switchModeDark';
 import { signIn } from "next-auth/react"
 
-const { Text, Link } = Typography;
+const { Text } = Typography;
 
 export default function Page() {
+
+  const appVersion = process.env.NEXT_PUBLIC_APP_VERSION;
+
   const onFinish = async (values: Record<string, any>) => {
     await signIn('credentials', {
       redirect: false,
-      Username: values.username,
-      Password: values.password
+      username: values.username,
+      password: values.password
     })
-    console.log('Received values from form: ', values);
   };
 
   return (
@@ -69,7 +71,7 @@ export default function Page() {
               <Button block onClick={() => signIn('google')}>Sign In With Google</Button>
             </Space>
             <Space direction="vertical" style={{ width: '100%',display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end',marginTop: '16px' }}>
-            <Text type="secondary">v1.0.0</Text>
+            <Text type="secondary">v{appVersion}</Text>
             </Space>
           </Card>
         </Space>

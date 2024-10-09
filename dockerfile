@@ -1,0 +1,8 @@
+
+FROM postgres:latest
+
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=postgres1234&#%
+ENV POSTGRES_DB=next_nest_db
+
+EXPOSE 5432

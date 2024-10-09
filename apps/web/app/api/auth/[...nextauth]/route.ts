@@ -17,18 +17,29 @@ const handler = NextAuth({
         CredentialsProvider({
             name: 'credentials',
             credentials: {
-                username: { label: "Username", type: "text" },
-                password: { label: "Password", type: "password" }
+                username: { label: "username", type: "text" },
+                password: { label: "password", type: "password" }
             },
             async authorize(credentials) {
-                console.log('authorize credentials', credentials);
 
-                const user = { id: "1", name: "User", email: "user@example.com" };
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                const raw = JSON.stringify({
+                    "username": credentials?.username,
+                    "password": credentials?.password
+                });
+                const requestOptions = {
+                    method: "POST",
+                    headers: myHeaders,
+                    body: raw
+                };
+                const resLogin = await fetch(`${process.env.BASE_URL_API}/auth/login`, requestOptions)
 
-                if (credentials?.username === "admin" && credentials?.password === "password") {
-                    return user;
+                if (resLogin.ok) {
+                    const userProfile = await resLogin.json()
+                    return userProfile
                 } else {
-                    return null;
+                    return null
                 }
             }
         })
@@ -37,13 +48,13 @@ const handler = NextAuth({
         signIn: '/',
     },
     callbacks: {
-        async signIn({ account, profile }) {
+        async signIn({ user, account, profile, email, credentials }) {
             if (account && account.provider === "google") {
                 console.log(account, profile);
                 return true
             }
 
-            console.log('callbacks signIn', account, profile);
+            console.log('callbacks signIn', user, account, profile, email, credentials);
 
             return true // Do different verification for other providers that don't have `email_verified`
         },
@@ -54,7 +65,7 @@ const handler = NextAuth({
             return token;
         },
         async session({ session, token }) {
-            // session.access_token = token.access_token as string;
+            session.access_token = token.access_token as string;
             return session;
         },
     },

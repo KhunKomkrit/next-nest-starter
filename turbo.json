@@ -4,6 +4,7 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
+      "env": ["GOOGLE_CLIENT_ID","GOOGLE_CLIENT_SECRET","BASE_URL_API"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
@@ -17,7 +18,8 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "env": ["GOOGLE_CLIENT_ID","GOOGLE_CLIENT_SECRET","BASE_URL_API"]
     }
   }
 }
